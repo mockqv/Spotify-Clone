@@ -10,6 +10,7 @@ import Search from "./Main/Search";
 import YourLibrary from "./Main/YourLibrary";
 import Login from "./Auth/Login";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { View } from "react-native";
 
 export default function Main() {
   const Stack = createNativeStackNavigator();
@@ -17,9 +18,9 @@ export default function Main() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false}}>
         <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="SignUp" component={Signup} options={{headerShown: true, headerStyle: {backgroundColor: "#000000",}, title: i18n.t("createAccount"), headerTitleAlign: "center", headerTintColor: "#fff", headerTitleStyle: { fontSize: 16 }}}/>
-        <Stack.Screen name="Login" component={Login} options={{headerShown: true, headerStyle: {backgroundColor: "#000000",}, title: "", headerTitleAlign: "center", headerTintColor: "#fff"}}/>
-        <Stack.Screen name="Home" component={BottomTabs} />
+        <Stack.Screen name="SignUp" component={Signup} options={{headerShown: true, headerStyle: {backgroundColor: "#121212",}, title: i18n.t("createAccount"), headerTitleAlign: "center", headerTintColor: "#fff", headerTitleStyle: { fontSize: 16 }}}/>
+        <Stack.Screen name="Login" component={Login} options={{headerShown: true, headerStyle: {backgroundColor: "#121212",}, title: "", headerTitleAlign: "center", headerTintColor: "#fff"}}/>
+        <Stack.Screen name="HomeTabs" component={BottomTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -31,8 +32,13 @@ function BottomTabs() {
   return (  
     <Tab.Navigator
       screenOptions={({route}) => ({
+        tabBarBackground: () => (
+          <View style={{flex: 1, backgroundColor: "#121212"}}/>
+        ),
+        tabBarStyle: {backgroundColor: "transparent", position: "absolute", borderTopWidth: 0},
+        title: i18n.t(route.name),
         headerShown: false,
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ focused, color}) => {
           let iconName;
 
           if(route.name === "Home"){
@@ -40,18 +46,16 @@ function BottomTabs() {
           } else if(route.name === "Search"){
             iconName = focused ? "search" : "search-outline";
           } else if(route.name === "YourLibrary"){
-            iconName = focused ? "Bookmarks" : "Bookmarks-outline"
+            iconName = focused ? "bookmarks" : "bookmarks-outline"
           }
 
         //@ts-ignore
-        return <Ionicons name={iconName} size={size} color={color}/>;
+        return <Ionicons name={iconName} size={25} color={color}/>;
         },
         tabBarActiveTintColor: "#FFFFFF",
         tabBarInactiveTintColor: "#999999",
-      })}
-      
-
-      
+      })}    
+    
     >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search}  />

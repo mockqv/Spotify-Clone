@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
-    backgroundColor: "#000000",
+    backgroundColor: "#121212",
   },
   inputView: {
     width: width * 0.9,

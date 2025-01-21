@@ -30,13 +30,12 @@ export default function Login() {
         const response = await signInWithEmail(user);
         if (response) {
           //@ts-ignore
-          navigation.navigate("Home");
+          navigation.navigate("HomeTabs");
           return;
         }
-        console.log(response);
         return;
     } catch (err) {
-        console.log(err);
+        //Do nothing
     }
     };
 
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
-    backgroundColor: "#000000",
+    backgroundColor: "#121212",
     gap: width * 0.2,
     marginTop: height * -0.03,
   },

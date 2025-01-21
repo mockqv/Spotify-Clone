@@ -11,7 +11,7 @@ export default function SignIn() {
 
   return (
     <LinearGradient
-      colors={["#4A4A4A", "#2E2E2E", "#1A1A1A", "#000000"]}
+      colors={["#4A4A4A", "#2E2E2E", "#1A1A1A", "#121212"]}
       style={styles.container}
       start={{ x: 0.5, y: 0 }}
       end={{ x: 0.5, y: 0.35 }}
