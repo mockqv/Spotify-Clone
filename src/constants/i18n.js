@@ -26,6 +26,7 @@ const i18n = new I18n({
     YourLibrary: "Your Library",
     ArtistYouFollow: "Artists Your Follow",
     RecommendedWorks: "Recommended Works",
+    YourPlaylists: "Your Playlists",
   },
 });
 

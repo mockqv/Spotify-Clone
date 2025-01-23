@@ -15,6 +15,12 @@ interface Props {
   item: Item;
 }
 
+
+/**
+* A component used for render the Albums or Singles
+* @param { Props } props - the component data
+*/
+
 const WorkRender: React.FC<Props> = (props: Props) => {
   const { workContainerStyle, workImageStyle, workNameStyle, workAuthorStyle, imageSource, item } = props;
 

@@ -21,6 +21,13 @@ const artists = [
   { id: "3", name: "Artist 3", image: "https://cataas.com/cat" },
 ];
 
+// Mock Data
+const playlists = [
+  { id: "1", name: "Playlist 1", image: "https://cataas.com/cat" },
+  { id: "2", name: "Playlist 2", image: "https://cataas.com/cat" },
+  { id: "3", name: "Playlist 3", image: "https://cataas.com/cat" },
+];
+
 const works = [
   {
     id: "1",
@@ -83,6 +90,25 @@ export default function Home() {
             showsHorizontalScrollIndicator={false}
           />
         </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{i18n.t("YourPlaylists")}</Text>
+          <FlatList
+            data={playlists}
+            horizontal
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <ArtistRender
+                artistContainerStyle={styles.artistContainer}
+                artistImageStyle={styles.playlistImage}
+                artistNameStyle={styles.playlistName}
+                item={item}
+              />
+            )}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -117,7 +143,9 @@ const styles = StyleSheet.create({
   artistName: {
     color: "#FFFFFF",
     fontSize: 14,
-    textAlign: "center",
+    width: "100%",
+    textAlign: "auto",
+    fontWeight: "bold",
   },
   workContainer: {
     marginRight: 16,
@@ -132,11 +160,27 @@ const styles = StyleSheet.create({
   workName: {
     color: "#FFFFFF",
     fontSize: 14,
-    textAlign: "center",
+    width: "100%",
+    textAlign: "auto",
   },
   workAuthor: {
     color: "#BBBBBB",
     fontSize: 12,
-    textAlign: "center",
+    width: "100%",
+    textAlign: "auto",
   },
+  playlistName: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    width: "100%",
+    textAlign: "auto",
+    fontWeight: "bold",
+  },
+  playlistImage: {
+    width: width * 0.4,
+    height: height * 0.19,
+    borderRadius: 10,
+    marginBottom: 8,
+    resizeMode: "stretch",
+  }
 });

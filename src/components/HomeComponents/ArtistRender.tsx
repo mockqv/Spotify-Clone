@@ -11,6 +11,11 @@ interface Props {
   };
 }
 
+/**
+* A component used for render the Artists or Playlists
+* @param { Props } props - the component data
+*/
+
 const ArtistRender: React.FC<Props> = (props: Props) => {
   return (
     <View style={props.artistContainerStyle}>
