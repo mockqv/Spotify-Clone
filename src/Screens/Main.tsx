@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SignIn from "./Auth/SignIn";
 import Signup from "./Auth/Signup";
-import i18n from "../constants/i18n";
+import i18n from "../Constants/i18n";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./Main/Home";
 import Search from "./Main/Search";

@@ -2,9 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
-import { height, width } from "../../constants/measures";
+import { height, width } from "../../Constants/measures";
 import { useNavigation } from "@react-navigation/native";
-import i18n from "../../constants/i18n";
+import i18n from "../../Constants/i18n";
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -19,7 +19,7 @@ export default function SignIn() {
       <View style={styles.logoView}>
         <Image
           style={styles.logo}
-          source={require("../../assets/spotify-white-icon.jpg")}
+          source={require("../../Assets/spotify-white-icon.jpg")}
         />
         <Text style={styles.text}>Millions of songs. Free on Spotify.</Text>
       </View>

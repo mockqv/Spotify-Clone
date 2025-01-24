@@ -4,11 +4,11 @@
     "slug": "Spotify-Clone",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/Spotify-app-icon.png",
+    "icon": "./src/Assets/Spotify-app-icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./src/assets/Spotify-app-icon.png",
+      "image": "./src/Assets/Spotify-app-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#191414"
     },
@@ -17,12 +17,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/Spotify-app-icon.png",
+        "foregroundImage": "./src/Assets/Spotify-app-icon.png",
         "backgroundColor": "#191414"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./Assets/favicon.png"
     },
     "plugins": [
       "expo-localization"
