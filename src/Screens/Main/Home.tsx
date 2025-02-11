@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Animated,
   FlatList,
@@ -6,49 +6,24 @@ import {
   Text,
   StyleSheet,
   Image,
-  Dimensions,
 } from "react-native";
 import { height, width } from "../../Constants/measures";
 import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../../Constants/i18n";
 import WorkRender from "../../Components/HomeComponents/WorkRender";
 import ArtistRender from "../../Components/HomeComponents/ArtistRender";
-
-// Mock Data
-const artists = [
-  { id: "1", name: "Artist 1", image: "https://cataas.com/cat" },
-  { id: "2", name: "Artist 2", image: "https://cataas.com/cat" },
-  { id: "3", name: "Artist 3", image: "https://cataas.com/cat" },
-];
-
-const playlists = [
-  { id: "1", name: "Playlist 1", image: "https://cataas.com/cat" },
-  { id: "2", name: "Playlist 2", image: "https://cataas.com/cat" },
-  { id: "3", name: "Playlist 3", image: "https://cataas.com/cat" },
-];
-
-const works = [
-  {
-    id: "1",
-    name: "Album 1",
-    author: "Artist 1",
-    image: "https://cataas.com/cat",
-  },
-  {
-    id: "2",
-    name: "Single 1",
-    author: "Artist 2",
-    image: "https://cataas.com/cat",
-  },
-  {
-    id: "3",
-    name: "Album 2",
-    author: "Artist 3",
-    image: "https://cataas.com/cat",
-  },
-];
+import Artist from "../../interfaces/Artist";
+import Song from "../../interfaces/Song";
+import Playlist from "../../interfaces/Playlist";
+import getArtists from "../../../http/artist/getArtists";
+import getSongs from "../../../http/song/getSongs";
+import getPlaylists from "../../../http/playlist/getPlaylists";
 
 export default function Home() {
+  const [artists, setArtists] = useState<Artist[] | null>([]);
+  const [works, setWorks] = useState<Song[] | null>([]);
+  const [playlists, setPlaylists] = useState<Playlist[] | null>([]);
+
   const scrollY = useRef(new Animated.Value(0)).current;
 
   const profileTranslateY = scrollY.interpolate({
@@ -56,6 +31,27 @@ export default function Home() {
     outputRange: [30, 20],
     extrapolate: "clamp",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const artistsData = await getArtists();
+        const worksData = await getSongs();
+        const playlistsData = await getPlaylists();
+
+        //@ts-ignore
+        setArtists(artistsData.response);
+        //@ts-ignore
+        setWorks(worksData.data);
+        setPlaylists(playlistsData);
+
+      } catch (error) {
+        console.error("Erro ao carregar os dados:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -90,7 +86,11 @@ export default function Home() {
                   artistContainerStyle={styles.artistContainer}
                   artistImageStyle={styles.artistImage}
                   artistNameStyle={styles.artistName}
-                  item={item}
+                  item={{
+                    image: item.image,
+                    name: item.name,
+                  }}
+
                 />
               )}
               showsHorizontalScrollIndicator={false}
@@ -155,7 +155,6 @@ export default function Home() {
             />
           </View>
 
-          {/* Espaçamento adicional no final para evitar corte */}
           <View style={{ height: 50 }} />
         </Animated.ScrollView>
       </View>

@@ -66,10 +66,12 @@ export default function SignIn() {
           {i18n.t("continueWithFacebook")}
         </Button>
         <Button
-          mode="text"
-          //@ts-ignore
-          onPress={() => navigation.navigate("Login")}
-          textColor="#ffffff"
+            mode="text"
+            //@ts-ignore
+            onPress={() => navigation.navigate("Login")}
+            textColor="#ffffff"
+            style={styles.loginButton}
+            rippleColor="transparent"
         >
           {i18n.t("logIn")}
         </Button>
@@ -114,5 +116,10 @@ const styles = StyleSheet.create({
   },
   labelButton: {
     fontSize: 17,
+  },
+  loginButton: {
+    padding: 0,
+    backgroundColor: 'transparent',
+    elevation: 0,
   },
 });

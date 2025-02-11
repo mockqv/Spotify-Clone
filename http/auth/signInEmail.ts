@@ -1,30 +1,31 @@
 import config from "../../config.json";
+import { saveLoginData } from "../../src/functions/SaveLoginData";
 
 interface User{
     email: string;
     password: string;
 };
 
-export default async function signInWithEmail(user: User){
+export default async function signInWithEmail(user: User) {
     try {
         const response = await fetch(`http:${config.localhost}:3000/login`, {
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(user),
         });
 
-        if (response){       
-            const teste = await response.json();
-            if (teste.content.name == "FirebaseError") return false;
+        if (response.ok) {
+            const userData = await response.json();
+            await saveLoginData(userData);
             return true;
         }
 
-        return true;
-
-    } catch (err) {
-        console.log(err);
+        return false;
+    } catch (error) {
+        console.error('Login error:', error);
         return false;
     }
-};
+
+}

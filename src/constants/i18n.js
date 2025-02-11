@@ -1,8 +1,5 @@
 import { getLocales } from "expo-localization";
 import { I18n } from "i18n-js";
-import Home from "../Screens/Main/Home";
-import Search from "../Screens/Main/Search";
-import YourLibrary from "../Screens/Main/YourLibrary";
 
 const i18n = new I18n({
   "en-US": {

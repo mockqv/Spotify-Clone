@@ -6,7 +6,7 @@ interface Props {
   artistImageStyle: ImageStyle;
   artistNameStyle: TextStyle;
   item: {
-    image: string;
+    image?: string;
     name: string;
   };
 }
