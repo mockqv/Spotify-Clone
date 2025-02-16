@@ -15,7 +15,7 @@ export default function SignIn() {
     const checkUserLogin = async () => {
       const user = await AsyncStorage.getItem("@user_login");
       if (user) {
-        navigation.navigate("HomeTabs");
+        navigation.navigate("HomeTabs" as never);
       } else {
         setIsLoading(false);
       }
@@ -54,7 +54,8 @@ export default function SignIn() {
           mode="contained"
           buttonColor="#1DB954"
           textColor="#000000"
-          onPress={() => navigation.navigate("SignUp")}
+
+          onPress={() => navigation.navigate("SignUp" as never)}
         >
           {i18n.t("signUp")}
         </Button>
@@ -90,7 +91,7 @@ export default function SignIn() {
         </Button>
         <Button
           mode="text"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate("Login" as never)}
           textColor="#ffffff"
           style={styles.loginButton}
           rippleColor="transparent"
