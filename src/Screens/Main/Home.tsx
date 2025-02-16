@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import {
   Animated,
   FlatList,
@@ -6,7 +6,10 @@ import {
   Text,
   StyleSheet,
   Image,
+  BackHandler,
 } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { height, width } from "../../Constants/measures";
 import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../../Constants/i18n";
@@ -44,7 +47,6 @@ export default function Home() {
         //@ts-ignore
         setWorks(worksData.data);
         setPlaylists(playlistsData);
-
       } catch (error) {
         console.error("Erro ao carregar os dados:", error);
       }
@@ -52,6 +54,47 @@ export default function Home() {
 
     fetchData();
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      let backPressCount = 0;
+      let backPressTimer: NodeJS.Timeout | null = null;
+
+      const handleBackPress = async () => {
+        const userLogin = await AsyncStorage.getItem("@user_login");
+
+        if (userLogin) {
+          if (backPressCount === 1) {
+            BackHandler.exitApp();
+            return true;
+          }
+
+          backPressCount += 1;
+
+          if (backPressTimer) {
+            clearTimeout(backPressTimer);
+          }
+
+          backPressTimer = setTimeout(() => {
+            backPressCount = 0;
+          }, 2000);
+
+          return true;
+        }
+
+        return false;
+      };
+
+      //@ts-ignore
+      BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+
+      return () => {
+        //@ts-ignore
+        BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+        if (backPressTimer) clearTimeout(backPressTimer);
+      };
+    }, [])
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -90,7 +133,6 @@ export default function Home() {
                     image: item.image,
                     name: item.name,
                   }}
-
                 />
               )}
               showsHorizontalScrollIndicator={false}
@@ -128,26 +170,6 @@ export default function Home() {
                   artistContainerStyle={styles.artistContainer}
                   artistImageStyle={styles.playlistImage}
                   artistNameStyle={styles.playlistName}
-                  item={item}
-                />
-              )}
-              showsHorizontalScrollIndicator={false}
-            />
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{i18n.t("RecommendedWorks")}</Text>
-            <FlatList
-              data={works}
-              horizontal
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <WorkRender
-                  workContainerStyle={styles.workContainer}
-                  workImageStyle={styles.workImage}
-                  workNameStyle={styles.workName}
-                  workAuthorStyle={styles.workAuthor}
-                  imageSource={item.image}
                   item={item}
                 />
               )}
