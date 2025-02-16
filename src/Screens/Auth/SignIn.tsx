@@ -1,13 +1,37 @@
-import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState } from "react";
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button } from "react-native-paper";
 import { height, width } from "../../Constants/measures";
 import { useNavigation } from "@react-navigation/native";
 import i18n from "../../Constants/i18n";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SignIn() {
+  const [isLoading, setIsLoading] = useState(true);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const checkUserLogin = async () => {
+      const user = await AsyncStorage.getItem("@user_login");
+      if (user) {
+        navigation.navigate("HomeTabs");
+      } else {
+        setIsLoading(false);
+      }
+    };
+
+    checkUserLogin();
+  }, [navigation]);
+
+  if (isLoading) {
+    return (
+      <LinearGradient
+        colors={["#121212", "#121212", "#121212", "#121212"]}
+        style={styles.container}
+      />
+    );
+  }
 
   return (
     <LinearGradient
@@ -30,7 +54,6 @@ export default function SignIn() {
           mode="contained"
           buttonColor="#1DB954"
           textColor="#000000"
-          //@ts-ignore
           onPress={() => navigation.navigate("SignUp")}
         >
           {i18n.t("signUp")}
@@ -66,18 +89,15 @@ export default function SignIn() {
           {i18n.t("continueWithFacebook")}
         </Button>
         <Button
-            mode="text"
-            //@ts-ignore
-            onPress={() => navigation.navigate("Login")}
-            textColor="#ffffff"
-            style={styles.loginButton}
-            rippleColor="transparent"
+          mode="text"
+          onPress={() => navigation.navigate("Login")}
+          textColor="#ffffff"
+          style={styles.loginButton}
+          rippleColor="transparent"
         >
           {i18n.t("logIn")}
         </Button>
       </View>
-
-      <StatusBar style="dark" />
     </LinearGradient>
   );
 }
@@ -119,7 +139,7 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     padding: 0,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     elevation: 0,
   },
 });
