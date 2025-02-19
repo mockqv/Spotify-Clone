@@ -3,4 +3,5 @@ export default interface Song {
     name: string;
     author: string;
     image: string;
+    type: "Song";
 };

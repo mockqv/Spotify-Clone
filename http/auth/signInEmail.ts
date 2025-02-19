@@ -1,10 +1,6 @@
 import config from "../../config.json";
 import { saveLoginData } from "../../src/functions/SaveLoginData";
-
-interface User{
-    email: string;
-    password: string;
-};
+import User from "../../src/interfaces/User";
 
 export default async function signInWithEmail(user: User) {
     try {

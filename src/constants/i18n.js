@@ -24,6 +24,14 @@ const i18n = new I18n({
     ArtistYouFollow: "Artists Your Follow",
     RecommendedWorks: "Recommended Works",
     YourPlaylists: "Your Playlists",
+    WhatDoYouWantToListenTo: "What do you want to listen to?",
+    PlayWhatYouLove: "Play what you love",
+    SearchFor: "Search for artists, songs, and more",
+    ClearRecentSearches: "Clear recent searches",
+    Song: "Song •",
+    Artist: "Artist",
+    Playlist: "Playlist",
+    
   },
 });
 

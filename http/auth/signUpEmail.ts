@@ -1,9 +1,5 @@
 import config from "../../config.json";
-
-interface User{
-    email: string;
-    password: string;
-};
+import User from "../../src/interfaces/User";
 
 export default async function signUpWithEmail(user: User){
     try {
