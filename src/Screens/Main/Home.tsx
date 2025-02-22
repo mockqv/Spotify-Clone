@@ -7,25 +7,28 @@ import {
   StyleSheet,
   Image,
   BackHandler,
+  TouchableOpacity,
+  ImageSourcePropType,
 } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
+import { NavigationHelpersContext, useFocusEffect, useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { height, width } from "../../Constants/measures";
 import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../../Constants/i18n";
 import WorkRender from "../../components/HomeComponents/WorkRender";
 import ArtistRender from "../../components/HomeComponents/ArtistRender";
-import Artist from "../../interfaces/Artist";
-import Song from "../../interfaces/Song";
-import Playlist from "../../interfaces/Playlist";
+import Artist from "../../Interfaces/Artist";
+import Song from "../../Interfaces/Song";
+import Playlist from "../../Interfaces/Playlist";
 import getArtists from "../../../http/artist/getArtists";
 import getSongs from "../../../http/song/getSongs";
 import getPlaylists from "../../../http/playlist/getPlaylists";
 
-export default function Home() {
+export default function Home({ navigation = useNavigation()}) {
   const [artists, setArtists] = useState<Artist[] | null>([]);
   const [works, setWorks] = useState<Song[] | null>([]);
   const [playlists, setPlaylists] = useState<Playlist[] | null>([]);
+  const [profilePhoto, setProfilePhoto] = useState<String>("");
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -35,7 +38,27 @@ export default function Home() {
     extrapolate: "clamp",
   });
 
+  const fetchProfilePhoto = async () => {
+    try {
+      const response = await AsyncStorage.getItem("@user_data");
+  
+      if (response) {
+        const userData = JSON.parse(response);
+        if (userData?.photo && userData.photo.trim() !== "") {
+          setProfilePhoto(userData.photo);
+          return;
+        }
+      }
+  
+      return;
+    } catch (err) {
+      throw console.log(err);
+    }
+  };
+
   useEffect(() => {
+    fetchProfilePhoto()
+    console.log(profilePhoto);
     const fetchData = async () => {
       try {
         const artistsData = await getArtists();
@@ -96,6 +119,11 @@ export default function Home() {
     }, [])
   );
 
+  const goToProfile = () => {
+    //@ts-ignore
+    navigation.navigate("Profile");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Animated.View
@@ -104,10 +132,13 @@ export default function Home() {
           { transform: [{ translateY: profileTranslateY }] },
         ]}
       >
-        <Image
-          source={{ uri: "https://cataas.com/cat" }}
-          style={styles.profileImage}
-        />
+        <TouchableOpacity onPress={goToProfile}>
+          <Image
+          //@ts-ignore
+            source={{ uri: profilePhoto != "" ? profilePhoto : "https://images.dog.ceo/breeds/collie-border/n02106166_5047.jpg"}}
+            style={styles.profileImage}
+          />
+        </TouchableOpacity>
       </Animated.View>
 
       <View style={{ marginTop: 30 }}>

@@ -1,6 +1,6 @@
 import config from "../../config.json";
-import { saveLoginData } from "../../src/functions/SaveLoginData";
-import User from "../../src/interfaces/User";
+import { saveLoginData } from "../../src/Functions/SaveLoginData";
+import User from "../../src/Interfaces/User";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getUserById from "./getUserbyId";
 

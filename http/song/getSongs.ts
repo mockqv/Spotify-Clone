@@ -1,5 +1,5 @@
 import config from "../../config.json";
-import Song from "../../src/interfaces/Song";
+import Song from "../../src/Interfaces/Song";
 
 
 

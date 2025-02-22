@@ -1,5 +1,5 @@
 import config from "../../config.json";
-import Artist from "../../src/interfaces/Artist";
+import Artist from "../../src/Interfaces/Artist";
 
 
 

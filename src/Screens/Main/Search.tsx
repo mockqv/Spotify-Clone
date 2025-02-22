@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 20,
-    backgroundColor: 'black',
+    backgroundColor: "#000000",
     height: height,
     width: width,
   },
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 5,
-    backgroundColor: '#1e1e1e',
+    backgroundColor: '#000000',
     padding: 10,
     borderRadius: 8,
   },
