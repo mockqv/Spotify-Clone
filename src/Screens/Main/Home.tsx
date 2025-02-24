@@ -15,14 +15,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { height, width } from "../../Constants/measures";
 import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../../Constants/i18n";
-import WorkRender from "../../components/HomeComponents/WorkRender";
-import ArtistRender from "../../components/HomeComponents/ArtistRender";
+import WorkRender from "../../components/Home/WorkRender"; 
+import ArtistRender from "../../components/Home/ArtistRender";
 import Artist from "../../Interfaces/Artist";
 import Song from "../../Interfaces/Song";
 import Playlist from "../../Interfaces/Playlist";
 import getArtists from "../../../http/artist/getArtists";
 import getSongs from "../../../http/song/getSongs";
 import getPlaylists from "../../../http/playlist/getPlaylists";
+import ProfileButton from "../../components/Profile/ProfileButton";
 
 export default function Home({ navigation = useNavigation()}) {
   const [artists, setArtists] = useState<Artist[] | null>([]);
@@ -58,7 +59,6 @@ export default function Home({ navigation = useNavigation()}) {
 
   useEffect(() => {
     fetchProfilePhoto()
-    console.log(profilePhoto);
     const fetchData = async () => {
       try {
         const artistsData = await getArtists();
@@ -132,13 +132,12 @@ export default function Home({ navigation = useNavigation()}) {
           { transform: [{ translateY: profileTranslateY }] },
         ]}
       >
-        <TouchableOpacity onPress={goToProfile}>
-          <Image
-          //@ts-ignore
-            source={{ uri: profilePhoto != "" ? profilePhoto : "https://images.dog.ceo/breeds/collie-border/n02106166_5047.jpg"}}
-            style={styles.profileImage}
-          />
-        </TouchableOpacity>
+        <ProfileButton
+          onPress={goToProfile}
+          image={profilePhoto}
+          style={styles.profileImage}
+        />
+        
       </Animated.View>
 
       <View style={{ marginTop: 30 }}>
