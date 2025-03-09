@@ -1,8 +1,6 @@
 import config from "../../config.json";
 import Playlist from "../../src/Interfaces/Playlist";
 
-
-
 export default async function getPlaylists(): Promise<Playlist[] | null> {
     try {
         const response = await fetch(`http://${config.localhost}:3000/playlists`, {

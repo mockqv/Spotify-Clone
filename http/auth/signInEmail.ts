@@ -23,7 +23,10 @@ export default async function signInWithEmail(user: User) {
             await saveLoginData(userData);
 
             if (fetchedUserData) {
-                await AsyncStorage.setItem('@user_data', JSON.stringify(fetchedUserData))
+                await AsyncStorage.setItem('@user_data', JSON.stringify({
+                    ...fetchedUserData,
+                    id: userId
+                }))
             }
 
             return true;

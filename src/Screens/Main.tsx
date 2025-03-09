@@ -12,6 +12,7 @@ import Login from "./Auth/Login";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { View } from "react-native";
 import Profile from "./Profile/Profile";
+import EditProfile from "./Profile/EditProfile";
 
 export default function Main() {
   const Stack = createNativeStackNavigator();
@@ -44,6 +45,7 @@ export default function Main() {
         />
         <Stack.Screen name="HomeTabs" component={BottomTabs} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
