@@ -32,7 +32,11 @@ const i18n = new I18n({
     Artist: "Artist",
     Playlist: "Playlist",
     Playlists: "Playlists",
-    NoPlaylistsFound: "No playlists found."
+    NoPlaylistsFound: "No playlists found.",
+    Name: "Name",
+    YourName: "Your Name",
+    EditProfile: "Edit Profile",
+    Save: "Save",
   },
 });
 

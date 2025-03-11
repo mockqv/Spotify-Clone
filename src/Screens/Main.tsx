@@ -10,9 +10,10 @@ import Search from "./Main/Search";
 import YourLibrary from "./Main/YourLibrary";
 import Login from "./Auth/Login";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import Profile from "./Profile/Profile";
 import EditProfile from "./Profile/EditProfile";
+import { Text } from "react-native-paper";
 
 export default function Main() {
   const Stack = createNativeStackNavigator();
@@ -45,7 +46,15 @@ export default function Main() {
         />
         <Stack.Screen name="HomeTabs" component={BottomTabs} />
         <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="EditProfile" component={EditProfile} options={({ navigation }) => ({
+    headerShown: true,
+    headerStyle: { backgroundColor: "#121212" },
+    title: i18n.t("EditProfile"),
+    headerTitleAlign: "center",
+    headerTintColor: "#fff",
+    headerTitleStyle: { fontSize: 16 },
+  })}
+/>
       </Stack.Navigator>
     </NavigationContainer>
   );
