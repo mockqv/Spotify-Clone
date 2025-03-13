@@ -37,6 +37,13 @@ const i18n = new I18n({
     YourName: "Your Name",
     EditProfile: "Edit Profile",
     Save: "Save",
+    ChooseAnOption: "Choose an option",
+    WouldYouLikeToPickAnImageFromTheCameraOrGallery: "Would you like to pick an image from the camera or gallery?",
+    Camera: "Camera",
+    Gallery: "Gallery",
+    Cancel: "Cancel",
+    YouNeedPermissionToAccessTheGallery: "You need permission to access the gallery.",
+    YouNeedPermissionToAccessTheCamera: "You need permission to access the camera.",
   },
 });
 
