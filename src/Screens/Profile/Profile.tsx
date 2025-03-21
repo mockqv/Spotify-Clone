@@ -7,7 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { height, width } from '../../Constants/measures';
 import ProfileButton from '../../components/Profile/ProfileButton';
 import i18n from '../../Constants/i18n';
-import getPlaylists from '../../../http/playlist/getPlaylists';
+import getPlaylists from '../../../http/Playlist/getPlaylists';
 
 interface Profile {
     id: string;

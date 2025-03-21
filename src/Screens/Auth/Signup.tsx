@@ -5,7 +5,7 @@ import { Button, Text, TextInput, IconButton } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../../Constants/i18n";
 import { height, width } from "../../Constants/measures";
-import signUpWithEmail from "../../../http/auth/signUpEmail";
+import signUpWithEmail from "../../../http/Auth/signUpEmail";
 import { useNavigation } from "@react-navigation/native";
 
 interface User {

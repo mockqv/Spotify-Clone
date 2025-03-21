@@ -44,6 +44,8 @@ const i18n = new I18n({
     Cancel: "Cancel",
     YouNeedPermissionToAccessTheGallery: "You need permission to access the gallery.",
     YouNeedPermissionToAccessTheCamera: "You need permission to access the camera.",
+    Songs: "Songs",
+    NoSongsFound: "No songs found.",
   },
 });
 

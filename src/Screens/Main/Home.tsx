@@ -20,9 +20,9 @@ import ArtistRender from "../../components/Home/ArtistRender";
 import Artist from "../../Interfaces/Artist";
 import Song from "../../Interfaces/Song";
 import Playlist from "../../Interfaces/Playlist";
-import getArtists from "../../../http/artist/getArtists";
-import getSongs from "../../../http/song/getSongs";
-import getPlaylists from "../../../http/playlist/getPlaylists";
+import getArtists from "../../../http/Artist/getArtists";
+import getSongs from "../../../http/Song/getSongs";
+import getPlaylists from "../../../http/Playlist/getPlaylists";
 import ProfileButton from "../../components/Profile/ProfileButton";
 
 export default function Home({ navigation = useNavigation()}) {
@@ -162,7 +162,9 @@ export default function Home({ navigation = useNavigation()}) {
                   item={{
                     image: item.image,
                     name: item.name,
+                    id: item.id,
                   }}
+                  type="artist"
                 />
               )}
               showsHorizontalScrollIndicator={false}
@@ -201,6 +203,7 @@ export default function Home({ navigation = useNavigation()}) {
                   artistImageStyle={styles.playlistImage}
                   artistNameStyle={styles.playlistName}
                   item={item}
+                  type="playlist"
                 />
               )}
               showsHorizontalScrollIndicator={false}

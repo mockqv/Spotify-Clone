@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import i18n from "../../Constants/i18n";
 import { width } from "../../Constants/measures";
-import updateUser from "../../../http/auth/updateUser";
+import updateUser from "../../../http/Auth/updateUser";
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 

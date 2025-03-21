@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import i18n from "../../Constants/i18n";
 import { height, width } from "../../Constants/measures";
 import { useNavigation } from "@react-navigation/native";
-import signInWithEmail from "../../../http/auth/signInEmail";
+import signInWithEmail from "../../../http/Auth/signInEmail";
 
 interface User {
   email: string;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, FlatList, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import searchItems from '../../../http/search/searchItems';
+import searchItems from '../../../http/Search/searchItems';
 import i18n from '../../Constants/i18n';
 import { height, width } from '../../Constants/measures';
 import { StatusBar } from 'expo-status-bar';
